@@ -8,8 +8,8 @@ struct PeripheryCommandPlugin: CommandPlugin {
         arguments: [String]
     ) throws {
         let tool = try context.tool(named: "periphery")
-        let toolExec = URL(fileURLWithPath: tool.path.string)
-        let process = try Process.run(toolExec, arguments: ["scan"])
+        let toolUrl = URL(fileURLWithPath: tool.path.string)
+        let process = try Process.run(toolUrl, arguments: arguments)
         process.waitUntilExit()
     }
 }

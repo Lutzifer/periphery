@@ -36,17 +36,16 @@ var targets: [PackageDescription.Target] = [
         name: "Frontend",
         dependencies: frontendDependencies
     ),
-    .plugin(
-        name: "PeripheryCommandPlugin",
-        capability: .command(
-            intent: .custom(verb: "periphery", description: "Detect unused code"),
-            permissions: []
-        ),
-        dependencies: [
-            .target(name: "PeripheryBinary", condition: .when(platforms: [.macOS])),
-            .target(name: "Frontend", condition: .when(platforms: [.linux]))
-        ]
-    ),
+    // .plugin(
+    //     name: "PeripheryCommandPlugin",
+    //     capability: .command(
+    //         intent: .custom(verb: "periphery", description: "Detect unused code"),
+    //         permissions: []
+    //     ),
+    //     dependencies: [
+    //         .target(name: "PeripheryBinary", condition: .when(platforms: [.macOS])),
+    //     ]
+    // ),
     .target(
         name: "PeripheryKit",
         dependencies: [
@@ -133,10 +132,9 @@ var targets: [PackageDescription.Target] = [
     ),
 //    .binaryTarget(
 //        name: "PeripheryBinary",
-//        url: "https://github.com/peripheryapp/Periphery/releases/download//PeripheryBinary-macos.artifactbundle.zip",
+//        url: "https://github.com/peripheryapp/Periphery/releases/download/124/periphery-124-macos.artifactbundle.zip",
 //        checksum: "dc37e6b9628a76947eed8b563b793a8722eee19421d8a9d9fc4926df57771ce2"
 //    ),
-        .binaryTarget(name: "PeripheryBinary", path: "artifact.zip")
 ]
 
 #if os(macOS)
@@ -174,7 +172,7 @@ let package = Package(
     platforms: [.macOS(.v12)],
     products: [
         .executable(name: "periphery", targets: ["Frontend"]),
-        .plugin(name: "PeripheryCommandPlugin", targets: ["PeripheryCommandPlugin"]),
+        // .plugin(name: "PeripheryCommandPlugin", targets: ["PeripheryCommandPlugin"]),
     ],
     dependencies: dependencies,
     targets: targets,
